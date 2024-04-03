@@ -22,7 +22,7 @@ The documentation of the [framework can be read here](https://www.neoteroi.dev/b
 ## Features
 
 - Basic folder structure
-- Configuration of OpenAI formatted exceptions handlers
+- Configuration of basic OpenAI formatted exceptions handlers
 - Configuration of basic middleware(s) with OpenAI style request ID's for logging and debugging purposes
 - OpenAI formatted template routes (/v1/models, /v1/chat/completions, /v1/images/generations, etc.)
 - Template AIModel system to create, load, manage, and use various AIModels; dynamically loads to /v1/models and gets for other routes respectively.
