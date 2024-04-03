@@ -1,0 +1,32 @@
+[
+    {
+        "type": "confirm",
+        "message": "Use OpenAPI Documentation?",
+        "name": "use_openapi",
+        "default": true,
+        "qmark": "📜"
+    },
+    {
+        "type": "select",
+        "name": "app_settings_library",
+        "message": "Library to read settings",
+        "choices": [
+            "essentials-configuration",
+            "Pydantic"
+        ],
+        "qmark": "🔧"
+    },
+    {
+        "type": "select",
+        "name": "app_settings_format",
+        "message": "App settings format",
+        "choices": [
+            "YAML",
+            "TOML",
+            "JSON",
+            "INI"
+        ],
+        "qmark": "🔩",
+        "when": "app_settings_library == essentials-configuration"
+    }
+]

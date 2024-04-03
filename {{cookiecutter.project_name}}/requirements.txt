@@ -1,0 +1,11 @@
+shuttleasgi==3.0.2
+uvicorn==0.22.0
+uvloop; platform_system != "Windows"
+{%- if cookiecutter.app_settings_library == "essentials-configuration" %}
+essentials-configuration[full]
+{%- endif %}
+{%- if cookiecutter.app_settings_library == "Pydantic" %}
+pydantic-settings
+{%- endif %}
+MarkupSafe==2.1.3
+pydantic==2.5.2
