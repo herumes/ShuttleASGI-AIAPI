@@ -28,7 +28,10 @@ The documentation of the [framework can be read here](https://www.neoteroi.dev/b
   environmental variables, or settings stored in a user's folder using
   [`essentials-configuration`](https://github.com/Neoteroi/essentials-configuration)
 - Handling of [dependency injection](https://www.neoteroi.dev/blacksheep/dependency-injection/), using [`rodi`](https://github.com/RobertoPrevato/rodi)
-- Configuration of exceptions handlers
+- Configuration of OpenAI formatted exceptions handlers
+- Configuration of basic middleware(s) with OpenAI style request ID's for logging and debugging purposes
+- OpenAI formatted template routes (/v1/models, /v1/chat/completions, /v1/images/generations, etc.)
+- Template AIModel system to create, load, manage, and use various AIModels; dynamically loads to /v1/models and gets for other routes respectively.
 - Strategy to handle [authentication](https://www.neoteroi.dev/blacksheep/authentication/) and [authorization](https://www.neoteroi.dev/blacksheep/authorization/), using [`guardpost`](https://github.com/RobertoPrevato/GuardPost)
 
 ## For more information on rodi
