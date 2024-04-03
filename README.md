@@ -1,15 +1,15 @@
-# BlackSheep-MVC Cookiecutter template
+# ShuttleASGI Cookiecutter template
 [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template to
-boostrap a new BlackSheep v2 application to build a Web API.
+boostrap a new ShuttleASGI application to build a Web API.
 
 ## Getting started
 
 ```bash
-pip install blacksheep-cli
+pip install shuttleasgi-cli
 ```
 
 ```bash
-blacksheep create --template aiapi
+shuttleasgi create --template aiapi
 
 🚀 Project name example
 📜 Use OpenAPI Documentation? Yes
@@ -46,3 +46,5 @@ pip install cookiecutter
 
 cookiecutter https://github.com/herumes/ShuttleASGI-AIAPI
 ```
+
+Credits to original BlackSheep/BlackSheep-CLI creator(s).
