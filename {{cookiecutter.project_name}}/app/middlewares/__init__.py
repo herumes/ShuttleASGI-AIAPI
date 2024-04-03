@@ -8,7 +8,7 @@ class BaseMiddleware:
         self, request: Request, handler: Callable[[Request], Awaitable[Response]]
     ) -> Response:
         # do something before passing the request to the next handler
-        request.scope['request_id'] = gen_req_id().encode()
+        request.scope['request_id'] = gen_req_id().encode('utf-8')
 
 
         response = await handler(request) # prepare the response
@@ -21,6 +21,6 @@ class BaseMiddleware:
 
 
 def configure_middlewares(app: Application) -> None:
-    app.middlewares.append(BaseMiddleware)
+    app.middlewares.append(BaseMiddleware())
 
 __all__ = ["configure_middlewares"]

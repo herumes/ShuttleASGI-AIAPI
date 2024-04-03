@@ -33,6 +33,7 @@ class AIModel:
         
         return {"object": "model", "data": model_object} if full else model_object
 
+    @classmethod
     def all_to_json(self) -> Dict[str, Any]:
         return {"object": "list", "data": [model.to_json(full=False) for model in AIModels.models.values()]}
 
@@ -42,19 +43,18 @@ class AIModelMeta(type):
         super().__init__(name, bases, attrs)
         cls.models = {value.id: value for value in attrs.values() if isinstance(value, AIModel)}
 
-
-class AIModels(metaclass=AIModelMeta):
     @classmethod
-    def _model(cls, id: str, providers: Optional[Union[List[ProviderType], ProviderType]] = None, 
-               created: int = 0, owned_by: str = 'openai') -> AIModel:
+    def new_model(cls, id: str, providers: Optional[Union[List[ProviderType], ProviderType]] = None, created: int = 0, owned_by: str = 'openai') -> AIModel:
         if providers is None:
             providers = [OpenAI()] # default OpenAI provider for models not specifying own provider
         return AIModel(id=id, created=created, owned_by=owned_by, providers=providers)
 
+
+class AIModels(metaclass=AIModelMeta):
     # CHAT COMPLETION
-    gpt_4_turbo_preview = _model(id="gpt-4-turbo-preview")
-    gpt_4 = _model(id="gpt-4") 
-    gpt_35_turbo = _model(id="gpt-3.5-turbo")
-    claude_3_opus = _model(id="claude-3-opus", providers=[Anthropic()])
-    claude_3_sonnet = _model(id="claude-3-sonnet", providers=[Anthropic()])
-    claude_3_haiku = _model(id="claude-3-haiku", providers=[Anthropic()])
+    gpt_4_turbo_preview = AIModelMeta.new_model(id="gpt-4-turbo-preview")
+    gpt_4 = AIModelMeta.new_model(id="gpt-4") 
+    gpt_35_turbo = AIModelMeta.new_model(id="gpt-3.5-turbo")
+    claude_3_opus = AIModelMeta.new_model(id="claude-3-opus", providers=[Anthropic()])
+    claude_3_sonnet = AIModelMeta.new_model(id="claude-3-sonnet", providers=[Anthropic()])
+    claude_3_haiku = AIModelMeta.new_model(id="claude-3-haiku", providers=[Anthropic()])

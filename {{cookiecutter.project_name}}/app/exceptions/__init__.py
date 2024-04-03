@@ -3,20 +3,25 @@ from typing import Optional, Union
 from blacksheep import Application, Request, Response, pretty_orjson
 
 
-def _class_to_error_type(class_name: str) -> str:
-    return '_'.join(word.lower() for word in class_name.split('Error')).rstrip('_')
+def get_exception_type(etype: Exception | str) -> str:
+    if isinstance(etype, str):
+        return etype
+    class_name = etype.__class__.__name__
+    snake_case = ''.join(['_' + i.lower() if i.isupper() else i for i in class_name]).lstrip('_')
+    snake_case = snake_case.replace('exception', 'error')
+    return snake_case
 
 
 class BaseErrorCodes(Enum):
     INVALID_REQUEST_ERROR = 400
-    RATE_LIMIT_REACHED = 429
-    INVALID_RESPONSE_ERROR = 500
+    RATE_LIMIT_EXCEPTION = 429
+    INVALID_RESPONSE_EXCEPTION = 500
 
 
-class BaseAPIException(Exception):
+class BaseError(Exception):
     def __init__(self, message: str, param: Optional[str] = None, code: Optional[Union[int, str]] = None, status: Optional[int] = None):
         self.message = message
-        self.type = _class_to_error_type(self.__class__.__name__)
+        self.type = get_exception_type(self)
         self.param = param
         self.code = code
         self.status = status or self._default_status()
@@ -37,20 +42,23 @@ class BaseAPIException(Exception):
             }
         }
     
-    def _handler(app: Application, request: Request, self) -> Response:
+    async def _handler(app: Application, request: Request, self) -> Response:
         return pretty_orjson(
             data=self.to_dict(),
             status=self.status
         )
+    
+    def to_response(self) -> Response:
+        return pretty_orjson(self.to_dict(), self.status)
 
 
-class RateLimitError(BaseAPIException):
+class RateLimitException(BaseError):
     pass
 
 
-class InvalidRequestError(BaseAPIException):
+class InvalidRequestException(BaseError):
     pass
 
 
-class InvalidResponseError(BaseAPIException):
+class InvalidResponseException(BaseError):
     pass
