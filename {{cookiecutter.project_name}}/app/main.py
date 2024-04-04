@@ -1,7 +1,7 @@
 """
-This module configures the BlackSheep application before it starts.
+This module configures the ShuttleASGI application before it starts.
 """
-from blacksheep import Application
+from shuttleasgi import Application
 from rodi import Container
 
 from app.auth import configure_authentication
