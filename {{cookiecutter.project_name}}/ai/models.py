@@ -43,18 +43,33 @@ class AIModelMeta(type):
         super().__init__(name, bases, attrs)
         cls.models = {value.id: value for value in attrs.values() if isinstance(value, AIModel)}
 
-    @classmethod
-    def new_model(cls, id: str, providers: Optional[Union[List[ProviderType], ProviderType]] = None, created: int = 0, owned_by: str = 'openai') -> AIModel:
-        if providers is None:
-            providers = [OpenAI()] # default OpenAI provider for models not specifying own provider
-        return AIModel(id=id, created=created, owned_by=owned_by, providers=providers)
-
 
 class AIModels(metaclass=AIModelMeta):
     # CHAT COMPLETION
-    gpt_4_turbo_preview = AIModelMeta.new_model(id="gpt-4-turbo-preview")
-    gpt_4 = AIModelMeta.new_model(id="gpt-4") 
-    gpt_35_turbo = AIModelMeta.new_model(id="gpt-3.5-turbo")
-    claude_3_opus = AIModelMeta.new_model(id="claude-3-opus", providers=[Anthropic()])
-    claude_3_sonnet = AIModelMeta.new_model(id="claude-3-sonnet", providers=[Anthropic()])
-    claude_3_haiku = AIModelMeta.new_model(id="claude-3-haiku", providers=[Anthropic()])
+    gpt_4_turbo_preview = AIModel(
+        id="gpt-4-turbo-preview",
+        providers=[OpenAI()]
+    )
+    gpt_4 = AIModel(
+        id="gpt-4",
+        providers=[OpenAI()
+    )
+    gpt_35_turbo = AIModel(
+        id="gpt-3.5-turbo",
+        providers=[OpenAI()]
+    )
+    claude_3_opus = AIModel(
+        id="claude-3-opus",
+        owned_by='anthropic',
+        providers=[Anthropic()]
+    )
+    claude_3_sonnet = AIModel(
+        id="claude-3-sonnet",
+        owned_by='anthropic',
+        providers=[Anthropic()]
+    )
+    claude_3_haiku = AIModel(
+        id="claude-3-haiku",
+        owned_by='anthropic',
+        providers=[Anthropic()]
+    )
