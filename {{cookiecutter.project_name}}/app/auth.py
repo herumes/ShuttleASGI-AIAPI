@@ -1,4 +1,4 @@
-from blacksheep import Application
+from shuttleasgi import Application
 
 from app.settings import Settings
 
