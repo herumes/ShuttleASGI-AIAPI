@@ -1,5 +1,5 @@
-from blacksheep.server.controllers import Controller, get
-from blacksheep import pretty_orjson
+from shuttleasgi.server.controllers import Controller, get
+from shuttleasgi import pretty_orjson
 
 class Root(Controller):
     @get()
