@@ -1,7 +1,7 @@
 from typing import Optional
 
-from blacksheep.server.controllers import Controller, post
-from blacksheep import Request, pretty_orjson
+from shuttleasgi.server.controllers import Controller, post
+from shuttleasgi import Request, pretty_orjson
 
 
 class Chat(Controller):
