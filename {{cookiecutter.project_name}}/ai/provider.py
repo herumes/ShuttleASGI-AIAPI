@@ -1,5 +1,5 @@
-import uuid
 from abc import ABC
+from utils import gen_uuid
 from typing import List, Dict, Any
 
 
@@ -9,7 +9,7 @@ class ProviderMixin:
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
         cls._name = cls.__name__.lower()
-        cls._id = str(uuid.uuid4())
+        cls._id = gen_uuid()
         ProviderMixin._provider_map[cls._name] = cls._id
 
     @property
