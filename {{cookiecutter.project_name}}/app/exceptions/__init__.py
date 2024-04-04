@@ -1,6 +1,6 @@
 from enum import Enum
 from typing import Optional, Union
-from blacksheep import Application, Request, Response, pretty_orjson
+from shuttleasgi import Application, Request, Response, pretty_orjson
 
 
 def get_exception_type(etype: Exception | str) -> str:
