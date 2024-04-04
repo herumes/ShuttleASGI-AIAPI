@@ -1,5 +1,5 @@
-from blacksheep import Request, Response
-from blacksheep.server import Application
+from shuttleasgi import Request, Response
+from shuttleasgi.server import Application
 
 from app.exceptions import (
     BaseError,
