@@ -52,7 +52,7 @@ class AIModels(metaclass=AIModelMeta):
     )
     gpt_4 = AIModel(
         id="gpt-4",
-        providers=[OpenAI()
+        providers=[OpenAI()]
     )
     gpt_35_turbo = AIModel(
         id="gpt-3.5-turbo",
