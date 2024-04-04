@@ -1,4 +1,4 @@
-from blacksheep import Application, Request, Response
+from shuttleasgi import Application, Request, Response
 from typing import Callable, Awaitable
 from utils import gen_req_id
 
